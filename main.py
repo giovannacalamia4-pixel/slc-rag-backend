@@ -38,7 +38,7 @@ ES_INDEX         = os.getenv("ES_INDEX", "sentenze")
 
 GEMINI_MODEL     = "gemini-1.5-flash-latest"
 GEMINI_URL_TPL   = (
-    "https://generativelanguage.googleapis.com/v1/models/"
+    "https://generativelanguage.googleapis.com/v1beta/models/"
     "{model}:generateContent?key={key}"
 )
 
