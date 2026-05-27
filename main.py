@@ -36,9 +36,9 @@ PINECONE_INDEX   = os.getenv("PINECONE_INDEX", "sentenze")
 ES_URL           = os.getenv("ES_URL", "")     # es. http://localhost:9200
 ES_INDEX         = os.getenv("ES_INDEX", "sentenze")
 
-GEMINI_MODEL     = "gemini-2.0-flash"
+GEMINI_MODEL = "gemini-2.5-flash"
 GEMINI_URL_TPL   = (
-    "https://generativelanguage.googleapis.com/v1/models/"
+    "https://generativelanguage.googleapis.com/v1beta/models/"
     "{model}:generateContent?key={key}"
 )
 
