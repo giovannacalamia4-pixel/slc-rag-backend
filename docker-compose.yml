@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - STUDIO_API_TOKEN=${STUDIO_API_TOKEN}
+      - PINECONE_API_KEY=${PINECONE_API_KEY:-}
+      - PINECONE_ENV=${PINECONE_ENV:-}
+      - PINECONE_INDEX=${PINECONE_INDEX:-sentenze}
+      - ES_URL=${ES_URL:-}
+      - ES_INDEX=${ES_INDEX:-sentenze}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ── Elasticsearch opzionale ──────────────────────────────────────────────────
+  # Decommentare per abilitare la ricerca keyword locale
+  # elasticsearch:
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:8.13.0
+  #   environment:
+  #     - discovery.type=single-node
+  #     - xpack.security.enabled=false
+  #     - ES_JAVA_OPTS=-Xms512m -Xmx512m
+  #   ports:
+  #     - "9200:9200"
+  #   volumes:
+  #     - esdata:/usr/share/elasticsearch/data
+  #   restart: unless-stopped
+
+# volumes:
+#   esdata:
