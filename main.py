@@ -115,7 +115,7 @@ async def call_gemini(prompt: str, system: str = "", max_tokens: int = 1500) -> 
         contents.append({"role": "model", "parts": [{"text": "Capito. Agirò di conseguenza."}]})
     contents.append({"role": "user", "parts": [{"text": prompt}]})
 
-   payload = {
+    payload = {
         "contents": contents,
         "generationConfig": {"maxOutputTokens": max_tokens, "temperature": 0.1},
     }
